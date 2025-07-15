@@ -4,559 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cestovní Asistent</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* Plynulé scrollování - fajn věc */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Hlavní font pro celou stránku */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            line-height: 1.6;
-        }
-
-        /* Kontejner pro obsah - standardní šířka */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 16px;
-        }
-
-        /* ========== NAVIGACE ========== */
-        /* Fixní navigace nahoře */
-        .nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 50;
-            background-color: #33292a; /* tmavá barva */
-            color: white;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 16px;
-            height: 64px;
-            display: flex;
-            align-items: center;
-            justify-content: center; /* vycentrované menu */
-        }
-
-        /* Odkazy v navigaci - skryté na mobilu */
-        .nav-links {
-            display: none;
-            gap: 32px;
-        }
-
-        .nav-links a {
-            color: #efa69d; /* světlejší barva pro odkazy */
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        /* Hover efekt na odkazy */
-        .nav-links a:hover {
-            color: #e9877b;
-        }
-
-        /* menu pro mobil */
-        .menu {
-            display: block;
-            position: absolute;
-            right: 16px;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-            padding: 8px;
-        }
-
-        /* ========== HERO SEKCE ========== */
-        /* Hlavní hero s obrázkem na pozadí */
-        .hero {
-            position: relative;
-            height: 100vh; /* celá výška obrazovky */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Obrázek na pozadí */
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -2;
-        }
-
-        /* Tmavý overlay přes obrázek */
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.2);
-            z-index: -1;
-        }
-
-        /* Obsah hero sekce */
-        .hero-content {
-            position: relative;
-            z-index: 10;
-            color: white;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            padding-bottom: 64px;
-            padding-left: 16px;
-            padding-right: 16px;
-        }
-
-        /* Kontejner pro text - max 992px */
-        .hero-text-container {
-            width: 100%;
-            max-width: 992px;
-            display: flex;
-            justify-content: flex-end; /* text vpravo */
-        }
-
-        /* Hlavní nadpis */
-        .hero-title {
-            text-align: right;
-            font-size: 40px;
-            font-weight: bold;
-            line-height: 1.1;
-        }
-
-        /* ========== OBECNÉ STYLY PRO SEKCE ========== */
-        .section {
-            padding: 64px 0;
-        }
-
-        .section-title {
-            font-size: 32px;
-            font-weight: bold;
-            margin-bottom: 24px;
-            color: #33292a;
-        }
-
-        .section-text {
-            color: #333333;
-            line-height: 1.6;
-            margin-bottom: 16px;
-        }
-
-        /* ========== O NÁS SEKCE ========== */
-        .about {
-            background-color: #f2f2f2; /* světle šedá */
-        }
-
-        /* Grid pro desktop - zatím jen blok */
-        .about-grid {
-            display: block;
-        }
-
-        .about-text {
-            margin-bottom: 32px;
-        }
-
-        /* Obrázek v about sekci */
-        .about-image {
-            width: 100%;
-            aspect-ratio: 4/3; /* poměr stran 4:3 */
-            object-fit: cover;
-            border-radius: 5px;
-        }
-
-        /* ========== CO DĚLÁME SEKCE ========== */
-        .what-we-do {
-            background-color: #644b4f; /* tmavší fialová */
-            color: white;
-        }
-
-        .what-we-do .section-title {
-            color: white;
-            text-align: center;
-        }
-
-        /* Text pod nadpisem */
-        .what-we-do-text {
-            color: #e5e5e5;
-            text-align: center;
-            max-width: 1024px;
-            margin: 0 auto 48px auto;
-        }
-
-        /* Grid pro ikony */
-        .icons-grid {
-            display: grid;
-            grid-template-columns: 1fr; /* jeden sloupec na mobilu */
-            gap: 32px;
-        }
-
-        .icon-item {
-            text-align: center;
-        }
-
-        /* Kontejner pro ikonu */
-        .icon-container {
-            width: 64px;
-            height: 64px;
-            margin: 0 auto 16px auto;
-        }
-
-        .icon-image {
-            width: 100%;
-            height: 100%;
-        }
-
-        .icon-text {
-            font-size: 18px;
-            font-weight: 500;
-        }
-
-        /* ========== GALERIE SEKCE ========== */
-        .gallery {
-            background-color: white;
-        }
-
-        /* Mobilní layout - sloupec */
-        .gallery-mobile {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        /* Desktop layout - zatím skrytý */
-        .gallery-desktop {
-            display: none;
-        }
-
-        /* Obrázky v galerii */
-        .gallery-item {
-            width: 100%;
-            aspect-ratio: 4/3;
-            object-fit: cover;
-            border-radius: 5px;
-        }
-
-        /* Textový prvek v galerii */
-        .gallery-text-item {
-            background-color: #33292a;
-            color: white;
-            padding: 24px;
-            border-radius: 5px;
-            aspect-ratio: 4/3;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-
-        .gallery-text-item h3 {
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        /* ========== KAM CHCETE JET SEKCE ========== */
-        .where-to-go {
-            background-color: #644b4f;
-            color: white;
-        }
-
-        .where-to-go .section-title {
-            color: white;
-            margin-bottom: 32px;
-        }
-
-        .where-to-go-text {
-            color: #e5e5e5;
-            margin-bottom: 24px;
-        }
-
-        /* Tlačítko kontakt */
-        .contact-button {
-            background-color: #efa69d;
-            color: white;
-            border: none;
-            padding: 8px 24px;
-            font-size: 14px;
-            font-weight: 500;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .contact-button:hover {
-            background-color: #e9877b;
-        }
-
-        /* ========== RECENZE SEKCE ========== */
-        .reviews {
-            background-color: #f2f2f2;
-        }
-
-        .reviews .section-title {
-            text-align: center;
-            margin-bottom: 24px;
-        }
-
-        /* Úvodní text recenzí */
-        .reviews-intro {
-            text-align: center;
-            max-width: 768px;
-            margin: 0 auto 48px auto;
-            color: #333333;
-        }
-
-        /* Grid pro recenze */
-        .reviews-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 32px;
-        }
-
-        .review-item {
-            text-align: center;
-        }
-
-        /* Fotka recenzenta */
-        .reviewer-photo {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%; /* kruh */
-            object-fit: cover;
-            margin: 0 auto 16px auto;
-        }
-
-        /* Text recenze */
-        .review-text {
-            color: #333333;
-            font-size: 14px;
-            line-height: 1.6;
-            margin-bottom: 16px;
-            max-width: 448px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Jméno recenzenta */
-        .reviewer-name {
-            font-weight: 500;
-            color: #33292a;
-            font-size: 18px;
-        }
-
-        /* ========== ZÁVĚREČNÉ OBRÁZKY ========== */
-        .final-images {
-            padding: 0; /* žádný padding */
-        }
-
-        .final-grid {
-            display: grid;
-            grid-template-columns: 1fr; /* jeden sloupec */
-            gap: 0;
-        }
-
-        .final-image {
-            width: 100%;
-            aspect-ratio: 4/3;
-            object-fit: cover;
-        }
-
-        /* ========== FOOTER ========== */
-        .footer {
-            background-color: #33292a;
-            color: white;
-            padding: 32px 0;
-            text-align: center;
-        }
-
-        .footer-text {
-            color: #d1d5db; /* světlejší šedá */
-            font-size: 14px;
-            margin-bottom: 8px;
-        }
-
-        .footer-link {
-            color: #efa69d;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-link:hover {
-            color: #e9877b;
-        }
-        @media (min-width: 769px) {
-            /* Větší nadpis na tabletu */
-            .hero-title {
-                font-size: 48px;
-            }
-
-            /* Více paddingu u sekcí */
-            .section {
-                padding: 80px 0;
-            }
-
-            .section-title {
-                font-size: 40px;
-            }
-
-            /* Dva sloupce pro ikony */
-            .icons-grid {
-                grid-template-columns: repeat(1, 1fr);
-            }
-
-            /* Dva sloupce pro závěrečné obrázky */
-            .final-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        @media (min-width: 769px) {
-
-            /* Ještě větší nadpis */
-            .hero-title {
-                font-size: 64px;
-            }
-
-            /* Více paddingu */
-            .section {
-                padding: 96px 0;
-            }
-
-            /* Grid pro about sekci */
-            .about-grid {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 64px;
-                align-items: start;
-            }
-
-            .about-text {
-                margin-bottom: 0;
-            }
-
-            /* Čtyři sloupce pro ikony */
-            .icons-grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 32px;
-            }
-
-            /* Skrýt mobilní galerii */
-            .gallery-mobile {
-                display: none;
-            }
-
-            /* Zobrazit desktop galerii */
-            .gallery-desktop {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 16px;
-            }
-
-            /* Čtvercové obrázky v desktop galerii */
-            .gallery-desktop .gallery-item,
-            .gallery-desktop .gallery-text-item {
-                aspect-ratio: 1/1; /* čtverec */
-            }
-
-            .gallery-desktop .gallery-text-item {
-                padding: 32px;
-            }
-
-            .gallery-desktop .gallery-text-item h3 {
-                font-size: 24px;
-            }
-
-            /* Grid pro "kam chcete jet" */
-            .where-to-go-grid {
-                display: grid;
-                grid-template-columns: 2fr 3fr; /* 2:3 poměr */
-                gap: 64px;
-                align-items: start;
-            }
-
-            .where-to-go .section-title {
-                margin-bottom: 0;
-            }
-
-            /* Dva sloupce pro recenze */
-            .reviews-grid {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 48px;
-            }
-        }
-
-        /* ========== EXTRA VELKÉ OBRAZOVKY (1280px+) ========== */
-         @media (min-width: 992px) {
-            /* Obrovský nadpis */
-            .hero-title {
-                font-size: 72px;
-            }
-
-            /* Zobrazit navigační odkazy */
-            .nav-links {
-                display: flex;
-            }
-
-            /* Skrýt menu */
-            .menu {
-                display: none;
-            }
-        } 
-
-        /* Nějaké další drobné úpravy pro lepší vzhled */
-        .section-text:last-child {
-            margin-bottom: 0; /* poslední odstavec bez spodního marginu */
-        }
-
-        /* Trochu lepší vzhled tlačítka */
-        .contact-button:focus {
-            outline: 2px solid #efa69d;
-            outline-offset: 2px;
-        }
-    </style>
+    <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
-    <!-- Hlavní navigace -->
+    <!-- HEADER -->
     <nav class="nav">
         <div class="nav-container">
-            <!-- Desktop navigace - odkazy -->
             <div class="nav-links">
                 <a href="#about">O nás</a>
                 <a href="#what-we-do">Co děláme</a>
                 <a href="#gallery">Naše výlety</a>
                 <a href="#where-to-go">Kam jet</a>
                 <a href="#reviews">Recenze</a>
-            </div>
+            </div>git save
 
             <!-- Mobilní menu -->
             <button class="menu">☰</button>
         </div>
     </nav>
 
-    <!-- Hero sekce s velkým obrázkem -->
+    <!-- HOME -->
     <section class="hero">
-        <img src="img/hero-tent.jpg" alt="Stan s výhledem" class="hero-bg">
+        <img src="assets/img/hero-tent.jpg" alt="Stan s výhledem" class="hero-bg">
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <div class="hero-text-container">
@@ -569,11 +38,10 @@
         </div>
     </section>
 
-    <!-- Sekce o nás -->
+    <!-- O nás -->
     <section id="about" class="section about">
         <div class="container">
             <div class="about-grid">
-                <!-- Textový obsah -->
                 <div class="about-text">
                     <h2 class="section-title">O nás</h2>
                     <div>
@@ -597,7 +65,7 @@
 
                 <!-- Obrázek -->
                 <div>
-                    <img src="img/about-hiker.jpg" alt="Turista v horském údolí" class="about-image">
+                    <img src="assets/img/about-hiker.jpg" alt="Turista v horském údolí" class="about-image">
                 </div>
             </div>
         </div>
@@ -620,28 +88,28 @@
             <div class="icons-grid">
                 <div class="icon-item">
                     <div class="icon-container">
-                        <img src="img/hiking-white.png" alt="Turistika" class="icon-image">
+                        <img src="assets/img/hiking-white.png" alt="Turistika" class="icon-image">
                     </div>
                     <h3 class="icon-text">Turistika</h3>
                 </div>
 
                 <div class="icon-item">
                     <div class="icon-container">
-                        <img src="img/cycle-white.png" alt="Cyklistika" class="icon-image">
+                        <img src="assets/img/cycle-white.png" alt="Cyklistika" class="icon-image">
                     </div>
                     <h3 class="icon-text">Cyklistika</h3>
                 </div>
 
                 <div class="icon-item">
                     <div class="icon-container">
-                        <img src="img/water-white.png" alt="Surfování" class="icon-image">
+                        <img src="assets/img/water-white.png" alt="Surfování" class="icon-image">
                     </div>
                     <h3 class="icon-text">Surfování</h3>
                 </div>
 
                 <div class="icon-item">
                     <div class="icon-container">
-                        <img src="img/car-white.png" alt="Výlety autem" class="icon-image">
+                        <img src="assets/img/car-white.png" alt="Výlety autem" class="icon-image">
                     </div>
                     <h3 class="icon-text">Výlety autem</h3>
                 </div>
@@ -652,39 +120,32 @@
     <!-- Galerie našich výletů -->
     <section id="gallery" class="section gallery">
         <div class="container">
-            <!-- Mobilní layout - jeden sloupec -->
             <div class="gallery-mobile">
-                <img src="img/gallery-1.jpg" alt="Horský turista" class="gallery-item">
-                <img src="img/gallery-2.jpg" alt="Odraz hory v jezeře" class="gallery-item">
-                <img src="img/gallery-3.jpg" alt="Lesní stezka" class="gallery-item">
-                <img src="img/gallery-4.jpg" alt="Kempování v lese" class="gallery-item">
+                <img src="assets/img/gallery-1.jpg" alt="Horský turista" class="gallery-item">
+                <img src="assets/img/gallery-2.jpg" alt="Odraz hory v jezeře" class="gallery-item">
+                <img src="assets/img/gallery-3.jpg" alt="Lesní stezka" class="gallery-item">
+                <img src="assets/img/gallery-4.jpg" alt="Kempování v lese" class="gallery-item">
                 <div class="gallery-text-item">
                     <h3>Naše výlety</h3>
                 </div>
-                <img src="img/gallery-5.jpg" alt="Chata pod hvězdami" class="gallery-item">
-                <img src="img/gallery-6.jpg" alt="Horské jezero" class="gallery-item">
-                <img src="img/gallery-7.jpg" alt="Horské květiny" class="gallery-item">
-                <img src="img/gallery-1.jpg" alt="Horské dobrodružství" class="gallery-item">
+                <img src="assets/img/gallery-5.jpg" alt="Chata pod hvězdami" class="gallery-item">
+                <img src="assets/img/gallery-6.jpg" alt="Horské jezero" class="gallery-item">
+                <img src="assets/img/gallery-7.jpg" alt="Horské květiny" class="gallery-item">
+                <img src="assets/img/gallery-1.jpg" alt="Horské dobrodružství" class="gallery-item">
             </div>
 
-            <!-- Desktop layout - 3x3 grid -->
             <div class="gallery-desktop">
-                <!-- První řada -->
-                <img src="img/gallery-1.jpg" alt="Horský turista" class="gallery-item">
-                <img src="img/gallery-2.jpg" alt="Odraz hory v jezeře" class="gallery-item">
-                <img src="img/gallery-3.jpg" alt="Lesní stezka" class="gallery-item">
-
-                <!-- Druhá řada -->
-                <img src="img/gallery-4.jpg" alt="Kempování v lese" class="gallery-item">
+                <img src="assets/img/gallery-1.jpg" alt="Horský turista" class="gallery-item">
+                <img src="assets/img/gallery-2.jpg" alt="Odraz hory v jezeře" class="gallery-item">
+                <img src="assets/img/gallery-3.jpg" alt="Lesní stezka" class="gallery-item">
+                <img src="assets/img/gallery-4.jpg" alt="Kempování v lese" class="gallery-item">
                 <div class="gallery-text-item">
                     <h3>Naše výlety</h3>
                 </div>
-                <img src="img/gallery-6.jpg" alt="Horské jezero" class="gallery-item">
-
-                <!-- Třetí řada -->
-                <img src="img/gallery-5.jpg" alt="Chata pod hvězdami" class="gallery-item">
-                <img src="img/gallery-3.jpg" alt="Lesní most" class="gallery-item">
-                <img src="img/gallery-7.jpg" alt="Horské květiny" class="gallery-item">
+                <img src="assets/img/gallery-6.jpg" alt="Horské jezero" class="gallery-item">
+                <img src="assets/img/gallery-5.jpg" alt="Chata pod hvězdami" class="gallery-item">
+                <img src="assets/img/gallery-3.jpg" alt="Lesní most" class="gallery-item">
+                <img src="assets/img/gallery-7.jpg" alt="Horské květiny" class="gallery-item">
             </div>
         </div>
     </section>
@@ -693,12 +154,11 @@
     <section id="where-to-go" class="section where-to-go">
         <div class="container">
             <div class="where-to-go-grid">
-                <!-- Nadpis -->
+
                 <div>
                     <h2 class="section-title">Kam chcete jet?</h2>
                 </div>
 
-                <!-- Obsah -->
                 <div>
                     <p class="where-to-go-text">
                         Jste připraveni začít své další dobrodružství? Ať už hledáte náročné horské vrcholy, klidná 
@@ -716,7 +176,7 @@
         </div>
     </section>
 
-    <!-- Sekce s recenzemi -->
+    <!-- Recenze -->
     <section id="reviews" class="section reviews">
         <div class="container">
             <div style="text-align: center; margin-bottom: 48px;">
@@ -731,7 +191,7 @@
             <div class="reviews-grid">
                 <!-- První recenze -->
                 <div class="review-item">
-                    <img src="img/reviewer-1.jpg" alt="Martin Novák" class="reviewer-photo">
+                    <img src="assets/img/reviewer-1.jpg" alt="Martin Novák" class="reviewer-photo">
                     <p class="review-text">
                         "Rezervovali jsme si u nich naši velkou evropskou túru, abychom prozkoumali jejich nabídku a 
                         užili si Evropu jako nikdy předtím. Výlet byl úžasný a dostali jsme se na neuvěřitelná místa, 
@@ -744,7 +204,7 @@
 
                 <!-- Druhá recenze -->
                 <div class="review-item">
-                    <img src="img/reviewer-2.jpg" alt="Lucie Svoboda" class="reviewer-photo">
+                    <img src="assets/img/reviewer-2.jpg" alt="Lucie Svoboda" class="reviewer-photo">
                     <p class="review-text">
                         "Nemohu říct, jak moc miluji turistiku v lese a horách už 10 let a neexistuje lepší způsob, 
                         jak trávit čas než v přírodě. Průvodci byli úžasní a pomohli nám objevit místa, která bychom 
@@ -756,18 +216,16 @@
             </div>
         </div>
     </section>
-
-    <!-- Závěrečné obrázky -->
     <section class="final-images">
         <div class="final-grid">
-            <img src="img/final-2.jpg" alt="Pouštní oblouk při západu slunce" class="final-image">
-            <img src="img/final-1.jpg" alt="Podzimní chata u jezera" class="final-image">
-            <img src="img/gallery-3.jpg" alt="Lesní stezka" class="final-image">
-            <img src="img/final-3.jpg" alt="Oceánská pláž při západu slunce" class="final-image">
+            <img src="assets/img/final-2.jpg" alt="Pouštní oblouk při západu slunce" class="final-image">
+            <img src="assets/img/final-1.jpg" alt="Podzimní chata u jezera" class="final-image">
+            <img src="assets/img/gallery-3.jpg" alt="Lesní stezka" class="final-image">
+            <img src="assets/img/final-3.jpg" alt="Oceánská pláž při západu slunce" class="final-image">
         </div>
     </section>
 
-    <!-- Patička stránky -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <p class="footer-text">© 2024 - Váš cestovní asistent. Všechna práva vyhrazena.</p>

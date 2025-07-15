@@ -1,0 +1,511 @@
+/* Reset výchozích stylů */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Hladké scrollování při kliknutí na odkazy */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Základní nastavení fontu a vzhledu textu */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6;
+}
+
+/* kontejner pro obsah stránky */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+/* ================= NAVIGACE ================= */
+
+
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background-color: #33292a;
+    color: white;
+}
+
+/* Zarovnání prvků doprostřed */
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-links {
+    display: none;
+    gap: 32px;
+}
+
+.nav-links a {
+    color: #efa69d;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+/* Hover efekt pro odkazy */
+.nav-links a:hover {
+    color: #e9877b;
+}
+
+/* Mobilní menu ikonka */
+.menu {
+    display: block;
+    position: absolute;
+    right: 16px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 8px;
+}
+
+/* ================= HERO SEKCE ================= */
+
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+/* Překryvná vrstva přes obrázek */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: -1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    color: white;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 0 16px 64px;
+}
+
+/* Text zarovnaný doprava */
+.hero-text-container {
+    width: 100%;
+    max-width: 992px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.hero-title {
+    text-align: right;
+    font-size: 40px;
+    font-weight: bold;
+    line-height: 1.1;
+}
+
+/* ================= OBECNÉ SEKCE ================= */
+
+.section {
+    padding: 64px 0;
+}
+
+.section-title {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 24px;
+    color: #33292a;
+}
+
+.section-text {
+    color: #333333;
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+/* ================= O NÁS ================= */
+
+.about {
+    background-color: #f2f2f2;
+}
+
+/* Layout se mění až na desktopu */
+.about-grid {
+    display: block;
+}
+
+.about-text {
+    margin-bottom: 32px;
+}
+
+.about-image {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+/* ================= CO DĚLÁME ================= */
+
+.what-we-do {
+    background-color: #644b4f;
+    color: white;
+}
+
+.what-we-do .section-title {
+    color: white;
+    text-align: center;
+}
+
+.what-we-do-text {
+    color: #e5e5e5;
+    text-align: center;
+    max-width: 1024px;
+    margin: 0 auto 48px auto;
+}
+
+/* Mřížka pro jednotlivé služby */
+.icons-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+}
+
+.icon-item {
+    text-align: center;
+}
+
+.icon-container {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 16px auto;
+}
+
+.icon-image {
+    width: 100%;
+    height: 100%;
+}
+
+.icon-text {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/* ================= GALERIE ================= */
+
+.gallery {
+    background-color: white;
+}
+
+.gallery-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.gallery-desktop {
+    display: none;
+}
+
+.gallery-item {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.gallery-text-item {
+    background-color: #33292a;
+    color: white;
+    padding: 24px;
+    border-radius: 5px;
+    aspect-ratio: 4/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.gallery-text-item h3 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* ================= KAM CHCETE JET ================= */
+
+.where-to-go {
+    background-color: #644b4f;
+    color: white;
+}
+
+.where-to-go .section-title {
+    color: white;
+    margin-bottom: 32px;
+}
+
+.where-to-go-text {
+    color: #e5e5e5;
+    margin-bottom: 24px;
+}
+
+.contact-button {
+    background-color: #efa69d;
+    color: white;
+    border: none;
+    padding: 8px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-button:hover {
+    background-color: #e9877b;
+}
+
+/* ================= RECENZE ================= */
+
+.reviews {
+    background-color: #f2f2f2;
+}
+
+.reviews .section-title {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.reviews-intro {
+    text-align: center;
+    max-width: 768px;
+    margin: 0 auto 48px auto;
+    color: #333333;
+}
+
+.reviews-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.review-item {
+    text-align: center;
+}
+
+.reviewer-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 16px auto;
+}
+
+.review-text {
+    color: #333333;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    max-width: 448px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.reviewer-name {
+    font-weight: 500;
+    color: #33292a;
+    font-size: 18px;
+}
+
+/* ================= ZÁVĚR – OBRÁZKY ================= */
+
+.final-images {
+    padding: 0;
+}
+
+.final-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+}
+
+.final-image {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+}
+
+/* ================= FOOTER ================= */
+
+.footer {
+    background-color: #33292a;
+    color: white;
+    padding: 32px 0;
+    text-align: center;
+}
+
+.footer-text {
+    color: #d1d5db;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.footer-link {
+    color: #efa69d;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: #e9877b;
+}
+
+/* ================= MEDIA QUERY: TABLET ================= */
+
+@media (min-width: 769px) {
+    .hero-title {
+        font-size: 48px;
+    }
+
+    .section {
+        padding: 80px 0;
+    }
+
+    .section-title {
+        font-size: 40px;
+    }
+
+    .icons-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .final-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ================= MEDIA QUERY: DESKTOP ================= */
+
+@media (min-width: 769px) {
+    .hero-title {
+        font-size: 64px;
+    }
+
+    .section {
+        padding: 96px 0;
+    }
+
+    .about-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 64px;
+        align-items: start;
+    }
+
+    .about-text {
+        margin-bottom: 0;
+    }
+
+    .icons-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 32px;
+    }
+
+    .gallery-mobile {
+        display: none;
+    }
+
+    .gallery-desktop {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+    }
+
+    .gallery-desktop .gallery-item,
+    .gallery-desktop .gallery-text-item {
+        aspect-ratio: 1/1;
+    }
+
+    .gallery-desktop .gallery-text-item {
+        padding: 32px;
+    }
+
+    .gallery-desktop .gallery-text-item h3 {
+        font-size: 24px;
+    }
+
+    .where-to-go-grid {
+        display: grid;
+        grid-template-columns: 2fr 3fr;
+        gap: 64px;
+        align-items: start;
+    }
+
+    .where-to-go .section-title {
+        margin-bottom: 0;
+    }
+
+    .reviews-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 48px;
+    }
+}
+
+/* ================= MEDIA QUERY: LARGE SCREENS ================= */
+
+@media (min-width: 992px) {
+    .hero-title {
+        font-size: 72px;
+    }
+
+    .nav-links {
+        display: flex;
+    }
+
+    .menu {
+        display: none;
+    }
+}
+
+/* ================= DROBNÉ ÚPRAVY ================= */
+
+.section-text:last-child {
+    margin-bottom: 0;
+}
+
+.contact-button:focus {
+    outline: 2px solid #efa69d;
+    outline-offset: 2px;
+}
